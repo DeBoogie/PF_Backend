@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import Ping from "../lib/Ping";
+import Token from "../lib/Token";
 import Utilities from "../lib/Utilities";
 
-class PingController extends Ping {
+class PingController extends Token {
     constructor() {
         super();
 
         // Bindings
         this.ping = this.ping.bind(this);
-        this.verifyPingToken = this.verifyPingToken.bind(this);
+        this.verifyToken = this.verifyToken.bind(this);
     }
 
     public ping(req: Request, res: Response) {
@@ -24,7 +24,7 @@ class PingController extends Ping {
         try {
             const token = req.headers.authorization?.split(' ')[1];
             if (token) {
-                const verified = await this.verify(token);
+                const verified = await this.verifyToken(token);
 
                 if (verified) {
                     const respData = { status: true, message: 'Token verified.' };
