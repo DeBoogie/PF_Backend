@@ -9,7 +9,7 @@ export class ConfigManagement {
 
     constructor() {
         if (!fs.existsSync(this.configFile)) {
-            console.log('Cannot find config.yml file.');
+            console.log('Cannot find config.yml file. Copy config.yml to from the root of the project to the build directory.');
             process.exit();
         }
     }
